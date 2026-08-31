@@ -1,0 +1,2 @@
+# macOS leaves these behind in any folder it has looked at.
+.DS_Store

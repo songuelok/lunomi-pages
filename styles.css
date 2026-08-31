@@ -1,0 +1,314 @@
+/*
+ * Lunomi's public pages.
+ *
+ * One stylesheet, no build step, no dependencies. The palette is the app's own
+ * (constants/theme.ts in the Lunomi repository), so somebody arriving here from
+ * the Play Store listing sees the same colours they saw on their phone.
+ *
+ * Everything is sized in rem and the layout is a single column, which is what
+ * makes "mobile-friendly" true without a media query for it: the page is
+ * already the shape of a phone, and a wide screen simply stops it growing.
+ */
+
+:root {
+  --background: #f4f2fb;
+  --surface: #ffffff;
+  --text: #1e1b2e;
+  --muted: #635e7a;
+  --accent: #6d5ae6;
+  --accent-dark: #5847c9;
+  --accent-soft: #e7e3fb;
+  --border: #e4e0f5;
+  --radius: 14px;
+  --measure: 44rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Anchored headings do not hide under the header on a jump from the nav. */
+  scroll-padding-top: 1.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  /*
+   * The reader's own system font. No web font is loaded, which keeps the site
+   * to two requests and means nothing here can call out to another server.
+   */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------------------------------------------------------- layout -- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+main {
+  padding: 2rem 0 3rem;
+}
+
+/* Somewhere for a keyboard to land before the navigation. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 2;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+/* ---------------------------------------------------------------- header -- */
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.brand svg {
+  display: block;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* The page you are already on is marked rather than linked away from. */
+nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------- typing -- */
+
+h1 {
+  font-size: 1.85rem;
+  line-height: 1.25;
+  margin: 0 0 0.6rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  line-height: 1.35;
+  margin: 2.2rem 0 0.6rem;
+}
+
+h3 {
+  font-size: 1.02rem;
+  margin: 1.5rem 0 0.4rem;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.3rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+a {
+  color: var(--accent-dark);
+}
+
+a:hover,
+a:focus {
+  color: var(--accent);
+}
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.updated {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------- pieces --- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+}
+
+/* The three doors on the home page. */
+.links {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  list-style: none;
+}
+
+.links a {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.links a:hover,
+.links a:focus {
+  border-color: var(--accent);
+}
+
+.links strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--accent-dark);
+}
+
+.links span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* A real link that looks like a button; it needs no script to work. */
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.8rem 1.35rem;
+  border-radius: 999px;
+  margin: 0.25rem 0 1rem;
+}
+
+.button:hover,
+.button:focus {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.email {
+  font-weight: 700;
+  word-break: break-word;
+}
+
+/* Long email addresses and code-ish strings must not push the page sideways. */
+code {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.92em;
+  word-break: break-word;
+}
+
+/* ---------------------------------------------------------------- footer -- */
+
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+}
+
+footer p {
+  margin: 0.35rem 0 0;
+}
+
+/* ---------------------------------------------------------------- wider --- */
+
+@media (min-width: 40rem) {
+  h1 {
+    font-size: 2.15rem;
+  }
+
+  main {
+    padding: 3rem 0 4rem;
+  }
+}

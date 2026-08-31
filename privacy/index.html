@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy &mdash; Lunomi</title>
+<meta name="description" content="How Lunomi handles account data, local app data and product analytics.">
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236D5AE6'/%3E%3Crect x='9' y='8' width='11' height='15' rx='3' fill='%23E7E3FB'/%3E%3Crect x='14' y='11' width='11' height='15' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="../">
+      <svg width="28" height="28" viewBox="0 0 32 32" role="img" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#6D5AE6"></rect>
+        <rect x="9" y="8" width="11" height="15" rx="3" fill="#E7E3FB"></rect>
+        <rect x="14" y="11" width="11" height="15" rx="3" fill="#FFFFFF"></rect>
+      </svg>
+      Lunomi
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="./" aria-current="page">Privacy Policy</a></li>
+        <li><a href="../delete-account/">Delete Account</a></li>
+        <li><a href="../support/">Support</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 31 August 2026</p>
+
+    <p class="lede">
+      This policy explains what information Lunomi processes, why, and which
+      service providers are involved. It is written in plain English rather than
+      in legal language.
+    </p>
+
+    <div class="card">
+      <h2>In short</h2>
+      <ul>
+        <li>Much of Lunomi works without an account.</li>
+        <li>Signing in is Google Sign-In only, and it is optional.</li>
+        <li>There is no advertising, no in-app purchases and no subscriptions.</li>
+        <li>
+          Lunomi does collect privacy-conscious product analytics, described
+          below. It is designed not to include personal content such as your
+          email address, your name, your username, or the words you type into
+          your own decks.
+        </li>
+        <li>You can delete your account from inside the app, or by email.</li>
+      </ul>
+    </div>
+
+    <h2>What Lunomi is</h2>
+    <p>
+      Lunomi is a multilingual vocabulary-learning mobile application. It teaches
+      words through picture flashcards, practice exercises and short games.
+      Lunomi is developed and published independently.
+    </p>
+
+    <h2>Using Lunomi without an account</h2>
+    <p>
+      Significant parts of Lunomi &mdash; studying the built-in sets, making your
+      own decks, and the practice games &mdash; work without signing in and
+      without an account. In that case no Lunomi account exists and no profile is
+      created for you. Product analytics, described below, still applies.
+    </p>
+
+    <h2>Google Sign-In</h2>
+    <p>
+      Signing in to Lunomi is done with Google Sign-In and no other method. When
+      you sign in:
+    </p>
+    <ul>
+      <li>
+        Your device asks Google to confirm who you are, and Google returns a
+        signed token to the app.
+      </li>
+      <li>
+        That token is sent to Supabase, our authentication and backend provider,
+        which verifies it and creates or opens an authentication account for you.
+      </li>
+      <li>
+        The authentication account held by Supabase includes the account
+        identifier and the email address associated with the Google account you
+        signed in with.
+      </li>
+    </ul>
+    <p>
+      Your Google password is never seen by Lunomi. Your email address is used to
+      identify your account; it is not shown to other Lunomi users, and it is not
+      sent to our analytics provider.
+    </p>
+
+    <h2>Account, profile and online features</h2>
+    <p>
+      An account is what enables the online parts of Lunomi. Where you use those
+      features, data of the following kinds may be stored on our behalf by
+      Supabase:
+    </p>
+    <ul>
+      <li>your Supabase authentication account;</li>
+      <li>
+        the public Lunomi username and profile you choose &mdash; this is chosen
+        by you inside the app, is separate from your Google name, and is visible
+        to other Lunomi users who can find or add you;
+      </li>
+      <li>friendships and friend requests between Lunomi accounts;</li>
+      <li>results you submit to the daily Compete challenge;</li>
+      <li>streak information;</li>
+      <li>podium and achievement counts, and related online progress data.</li>
+    </ul>
+    <p>
+      If you never sign in, none of the above exists for you.
+    </p>
+
+    <h2>Data stored on your device</h2>
+    <p>
+      Lunomi also keeps learning and application data locally on your device, so
+      that the app works offline. This includes things such as your language
+      settings, the decks and cards you create, and your progress in the games.
+    </p>
+    <p>
+      This local data stays on the device. It is removed when you clear the app's
+      data or uninstall Lunomi. Deleting your Lunomi account does not, by itself,
+      erase data that is stored only on your device.
+    </p>
+
+    <h2>Product analytics</h2>
+    <p>
+      Lunomi collects a small amount of product analytics so that we can
+      understand how the app is actually used and decide what to improve.
+    </p>
+    <p>
+      Lunomi does <strong>not</strong> include the Amplitude mobile SDK. Analytics
+      events are sent from the app to a Lunomi-controlled Supabase Edge Function,
+      which checks each event against a fixed list of permitted event names and
+      properties and then forwards it to Amplitude's HTTP API. Anything that is
+      not on that list is not forwarded.
+    </p>
+    <p>Analytics is used to understand things such as:</p>
+    <ul>
+      <li>app and session usage;</li>
+      <li>whether people complete onboarding;</li>
+      <li>use of the Work, Play and Compete sections;</li>
+      <li>which games are started and completed;</li>
+      <li>how often people reach the daily Play limit and ask for more;</li>
+      <li>retention and aggregate product usage over time.</li>
+    </ul>
+
+    <h3>Identifiers used for analytics</h3>
+    <ul>
+      <li>
+        A random installation identifier generated by the app itself may be used
+        to group events from the same installation. It is not derived from any
+        device or advertising identifier, and reinstalling the app can produce a
+        new one.
+      </li>
+      <li>
+        Where you are signed in, analytics may use a pseudonymous identifier
+        derived on our server from your account identifier, rather than sending
+        your raw Lunomi or Supabase account identifier to Amplitude.
+      </li>
+    </ul>
+
+    <h3>What analytics is designed not to send</h3>
+    <p>
+      Analytics events are built from a fixed list of permitted properties, which
+      is designed so that the following are not included:
+    </p>
+    <ul>
+      <li>your email address or Google email address;</li>
+      <li>your Lunomi username, or your real name;</li>
+      <li>the text of custom decks or cards you create;</li>
+      <li>the usernames or identities of your friends;</li>
+      <li>precise location;</li>
+      <li>an advertising ID;</li>
+      <li>Android hardware identifiers.</li>
+    </ul>
+    <p>
+      IP-based geolocation is intentionally disabled in the analytics forwarding
+      configuration, so location information is not derived from the network
+      request that carries these events.
+    </p>
+    <p class="note">
+      This section describes how the app is designed and configured. It is a
+      description of our current implementation, not a guarantee about the
+      internal behaviour of third-party systems.
+    </p>
+
+    <h2>Why we process this data</h2>
+    <ul>
+      <li>
+        <strong>To sign you in and keep you signed in.</strong> Authentication
+        data exists so that your account can be identified across sessions and
+        devices.
+      </li>
+      <li>
+        <strong>To provide the online features.</strong> Profiles, friends,
+        Compete results, streaks and achievement counts exist so that those
+        features work at all.
+      </li>
+      <li>
+        <strong>To operate and secure the service.</strong> Basic technical
+        processing by our providers is required for the app to communicate with
+        our backend.
+      </li>
+      <li>
+        <strong>To understand and improve the product.</strong> The analytics
+        described above.
+      </li>
+    </ul>
+    <p>
+      We do not sell personal data, and we do not use Lunomi data for advertising
+      or advertising personalisation.
+    </p>
+
+    <h2>Service providers</h2>
+    <ul>
+      <li>
+        <strong>Google</strong> &mdash; the Google Sign-In provider used for
+        authentication, and the operator of the Google Play distribution
+        platform.
+      </li>
+      <li>
+        <strong>Supabase</strong> &mdash; our authentication and backend service
+        provider. It stores the account, profile and online-feature data
+        described above, and hosts the Edge Function that forwards analytics.
+      </li>
+      <li>
+        <strong>Amplitude</strong> &mdash; our product analytics service
+        provider. It receives the analytics events described above, after they
+        have been filtered by our own server.
+      </li>
+    </ul>
+    <p>
+      These providers operate infrastructure that may be located in countries
+      other than your own. Each has its own privacy documentation, published on
+      its own website.
+    </p>
+
+    <h2>Retention, and deleting your account</h2>
+    <p>
+      Account-related data is kept for as long as your Lunomi account exists.
+    </p>
+    <p>
+      You can delete your Lunomi account from inside the app, or by emailing us.
+      Deleting the account is intended to delete the account and its associated
+      server-side Lunomi data, including applicable profile, social and Compete
+      data. Data stored only on your device may remain there until you clear the
+      app's data or uninstall Lunomi.
+    </p>
+    <p>
+      Full instructions are on the
+      <a href="../delete-account/">Delete Account</a> page.
+    </p>
+    <p class="note">
+      Analytics events that have already been sent are aggregate product-usage
+      records and are not linked to your name, email address or username. They
+      are not part of the account record and are not individually retrievable
+      from an account deletion request.
+    </p>
+
+    <h2>Children and families</h2>
+    <p>
+      Lunomi is intended to be suitable for children and families, and this
+      shapes what it does:
+    </p>
+    <ul>
+      <li>there is no advertising and no advertising SDK in the app;</li>
+      <li>no advertising ID or hardware identifier is collected;</li>
+      <li>there are no in-app purchases and no subscriptions;</li>
+      <li>the main learning features work without an account at all;</li>
+      <li>
+        the public profile name is chosen inside the app rather than taken from
+        the Google account, so a child's real name is not put on a leaderboard;
+      </li>
+      <li>
+        analytics is limited to the aggregate product measurements described
+        above.
+      </li>
+    </ul>
+    <p>
+      This section describes how Lunomi is built. It is not a statement of
+      certification or approval under any particular children's privacy law or
+      programme.
+    </p>
+    <p>
+      If you are a parent or guardian and you have a question about a child's use
+      of Lunomi, or you would like an account removed, please email
+      <a class="email" href="mailto:lunomi.app@gmail.com">lunomi.app@gmail.com</a>.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      This policy may be updated as Lunomi changes. When it is, the &ldquo;Last
+      updated&rdquo; date at the top of this page will change. Significant
+      changes will be reflected here before or at the time they take effect in
+      the app.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For any question about this policy, or about the data held for your
+      account, email
+      <a class="email" href="mailto:lunomi.app@gmail.com">lunomi.app@gmail.com</a>.
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <ul>
+      <li><a href="../">Home</a></li>
+      <li><a href="./">Privacy Policy</a></li>
+      <li><a href="../delete-account/">Delete Account</a></li>
+      <li><a href="../support/">Support</a></li>
+    </ul>
+    <p><a class="email" href="mailto:lunomi.app@gmail.com">lunomi.app@gmail.com</a></p>
+    <p>Lunomi &mdash; developed and published independently.</p>
+  </div>
+</footer>
+
+</body>
+</html>
