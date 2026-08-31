@@ -16,8 +16,13 @@ privacy/index.html       Privacy Policy
 delete-account/index.html  account deletion, for Play's external-deletion requirement
 support/index.html       support contact
 styles.css               the whole stylesheet
+icon.png                 the app icon, 192px, used as the header mark and favicon
 .nojekyll                stops GitHub Pages running these through Jekyll
 ```
+
+`icon.png` is generated from `assets/icon.png` in the Lunomi app repository --
+resized to 192 and palette-quantised, which is what keeps it under 3 KB. Replace
+it the same way if the app icon ever changes.
 
 ## Previewing it locally
 

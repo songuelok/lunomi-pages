@@ -105,8 +105,17 @@ header {
   margin-right: auto;
 }
 
-.brand svg {
+/*
+ * The app's own icon, at the size a header wants it.
+ *
+ * Rounded the way Android and iOS round it on a home screen, so the mark here
+ * is recognisably the thing somebody tapped to open Lunomi.
+ */
+.brand .mark {
   display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
 }
 
 nav ul {
