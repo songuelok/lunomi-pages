@@ -258,6 +258,11 @@
       if (response.status === 429) {
         return say('Too many attempts. Please wait a little and try again.');
       }
+      /* A fault on our side is not a wrong code, and must not be reported as
+         one: saying somebody's credential is wrong is a claim about them. */
+      if (response.status >= 500) {
+        return say('Something went wrong at our end. Nothing was deleted. Please try again shortly.');
+      }
       /* One message, whichever half was wrong: the server does not tell us
          which, and we would not repeat it if it did. */
       say('That username or recovery code is not right. Check both and try again.');
