@@ -321,3 +321,71 @@ footer p {
     padding: 3rem 0 4rem;
   }
 }
+
+/*
+ * The account-deletion form.
+ *
+ * The only page with a form on it, and the only one with script: everything
+ * else here is a document. It holds two fields and a confirmation, and it has
+ * to be readable by somebody who has just lost access to something.
+ */
+#deletion-form {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1.2rem 0 0.4rem;
+}
+
+#deletion-form label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+#deletion-form input {
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 2px solid #d8d4cc;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 0.6rem;
+}
+
+#deletion-form input:focus {
+  outline: none;
+  border-color: #6b5bd6;
+}
+
+/* The code is read off paper and typed back, so the groups must line up. */
+#code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.04em;
+}
+
+button.button {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+/* Destructive, and dressed as such: nobody should reach for this by accident. */
+.button.danger {
+  background: #b3261e;
+}
+
+.button.quiet {
+  background: transparent;
+  color: #4a4a4a;
+  text-decoration: underline;
+}
+
+.warn {
+  color: #b3261e;
+}
+
+.good {
+  color: #1b6b3a;
+}
+
+[hidden] {
+  display: none !important;
+}

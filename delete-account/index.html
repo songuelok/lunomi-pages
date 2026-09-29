@@ -34,14 +34,14 @@
     <p class="updated">Last updated: 31 August 2026</p>
 
     <p class="lede">
-      You can delete your Lunomi account in two ways: from inside the app, or by
-      sending us an email. You do not need to reinstall Lunomi to request
-      deletion.
+      You can delete your Lunomi account in two ways: from inside the app, or on
+      this page. Both delete the same things, and both take effect immediately.
+      You do not need to reinstall Lunomi.
     </p>
 
     <div class="card">
       <h2>1. Delete your account inside the app</h2>
-      <p>This is the fastest way, and it is immediate.</p>
+      <p>This is the simplest way if you are still signed in.</p>
       <ol>
         <li>Open Lunomi and make sure you are signed in.</li>
         <li>Go to your account page &mdash; the <strong>Profile</strong> button on the home screen.</li>
@@ -51,51 +51,80 @@
     </div>
 
     <div class="card">
-      <h2>2. Request deletion by email</h2>
+      <h2>2. Delete your account here</h2>
       <p>
-        If you cannot open the app, or you have already uninstalled it, email us
-        and we will delete the account for you.
+        If you cannot open the app, or you have uninstalled it, you can delete
+        your account from this page using your username and the
+        <strong>recovery code</strong> you were shown when you created it.
+      </p>
+      <p>
+        The recovery code is how we know the account is yours. We hold only a
+        scrambled form of it, so we cannot read it, look it up, or tell it to
+        anyone &mdash; including to someone pretending to be you.
       </p>
 
-      <p>
-        <a class="button" href="mailto:lunomi.app@gmail.com?subject=Lunomi%20Account%20Deletion%20Request&amp;body=Please%20delete%20my%20Lunomi%20account%20and%20its%20associated%20data.">Request Account Deletion</a>
-      </p>
+      <form id="deletion-form" autocomplete="off">
+        <label for="username">Lunomi username</label>
+        <input id="username" name="username" type="text" inputmode="text"
+               autocapitalize="none" autocorrect="off" spellcheck="false"
+               maxlength="20" required>
 
-      <p>
-        The button opens your email app with the subject
-        <code>Lunomi Account Deletion Request</code> already filled in. If it does
-        not work on your device, write to
-        <a class="email" href="mailto:lunomi.app@gmail.com">lunomi.app@gmail.com</a>
-        using that subject line.
-      </p>
+        <label for="code">Recovery code</label>
+        <input id="code" name="code" type="text" inputmode="text"
+               autocapitalize="characters" autocorrect="off" spellcheck="false"
+               placeholder="XXXX-XXXX-XXXX-XXXX-XXXX-XXXX" maxlength="48" required>
 
-      <h3>So that we can find the right account</h3>
-      <p>
-        A Lunomi account has no email address attached to it, so we cannot match
-        a request to an account by who it was sent from. The reliable way to
-        delete your account is from inside the app, where you are already signed
-        in and the deletion happens immediately.
-      </p>
-      <p>
-        If the app is uninstalled, you can install it again and sign in with your
-        username and password, then use the in-app button. Your account is
-        unaffected by uninstalling.
-      </p>
-      <p>
-        If you have lost <strong>both</strong> your password and your recovery
-        code, we have no way to establish that the account is yours, and we will
-        not delete an account on an unverified request &mdash; deleting the wrong
-        one cannot be undone. Such an account is already permanently inaccessible
-        to everyone, including us: it holds a username, game results and streaks,
-        and it cannot be signed into again. Write to us anyway if you would like
-        it looked at, and we will tell you honestly what we can and cannot do.
-      </p>
+        <button class="button" type="submit" id="submit">Continue</button>
+      </form>
 
+      <div id="confirm" hidden>
+        <p class="warn">
+          <strong>This deletes your Lunomi account permanently and cannot be
+          undone.</strong>
+        </p>
+        <p>
+          Your username becomes free for anyone else to take, and your friends,
+          streaks, Compete results and medals are removed. Learning data saved
+          only on your own device is not affected.
+        </p>
+        <p>
+          <button class="button danger" type="button" id="really">Yes, delete my account</button>
+          <button class="button quiet" type="button" id="cancel">Cancel</button>
+        </p>
+      </div>
+
+      <div id="done" hidden>
+        <p class="good"><strong>Your account has been deleted.</strong></p>
+        <p>
+          There is nothing left for us to remove. If Lunomi is still installed,
+          you can keep using Learn and Play without an account, or create a new
+          account at any time.
+        </p>
+      </div>
+
+      <p id="problem" class="warn" hidden></p>
+    </div>
+
+    <div class="card">
+      <h2>If you have lost your recovery code</h2>
       <p>
-        <strong>We will never ask you for your password, your recovery code, or
-        any other authentication credential.</strong>
-        Please do not send any of these to us. Nobody asking for them is acting
-        on Lunomi's behalf.
+        If you still know your password, open the app, sign in, and use the
+        <strong>Delete account</strong> button there. You can also get a new
+        recovery code from the account screen at any time.
+      </p>
+      <p>
+        If you have lost both your password and your recovery code, nobody can
+        open the account any more &mdash; including us. We cannot verify that it
+        is yours, and we will not delete an account on an unverified request,
+        because deleting the wrong one cannot be undone. Such an account holds a
+        username, game results and streaks, and can never be signed into again.
+        You are welcome to
+        <a class="email" href="mailto:lunomi.app@gmail.com">write to us</a>
+        about it, and we will tell you honestly what we can and cannot do.
+      </p>
+      <p>
+        <strong>We will never ask you for your password or your recovery code by
+        email.</strong> Anyone who does is not acting on Lunomi's behalf.
       </p>
     </div>
 
@@ -143,6 +172,105 @@
     </p>
   </div>
 </main>
+
+<script>
+/*
+ * Deleting an account from a static page.
+ *
+ * The page holds the project URL and the publishable key, which are public by
+ * design: what they may do is decided by row-level security on the server, not
+ * by keeping them secret. The key that can actually delete anybody lives in the
+ * Edge Function and is never sent here.
+ *
+ * The recovery code is posted over HTTPS and nowhere else. It is not put in the
+ * URL, not stored, and not logged -- a code in a query string would end up in
+ * browser history and in every proxy along the way.
+ */
+(function () {
+  var URL_BASE = 'https://diehrbcdfycquclkzmfi.supabase.co';
+  var PUBLISHABLE = 'sb_publishable_De-fByXHfDOtUXY3s6hkFg_FZ-U84jr';
+
+  var form = document.getElementById('deletion-form');
+  var confirmBox = document.getElementById('confirm');
+  var done = document.getElementById('done');
+  var problem = document.getElementById('problem');
+  var really = document.getElementById('really');
+  var cancel = document.getElementById('cancel');
+
+  function say(text) {
+    problem.textContent = text;
+    problem.hidden = !text;
+  }
+
+  /* Crockford base 32: no I, L, O or U, and the first three are aliases. */
+  function normalise(value) {
+    return value.replace(/[^A-Za-z0-9]/g, '').toUpperCase()
+      .replace(/[ILO]/g, function (c) { return c === 'O' ? '0' : '1'; });
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    say('');
+    var username = document.getElementById('username').value.trim().toLowerCase();
+    var code = normalise(document.getElementById('code').value);
+    if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+      return say('That does not look like a Lunomi username.');
+    }
+    if (!/^[0-9A-HJKMNP-TV-Z]{24}$/.test(code)) {
+      return say('A recovery code is 24 characters, usually shown in six groups of four.');
+    }
+    /* Asked again before anything is destroyed, and named plainly. */
+    form.hidden = true;
+    confirmBox.hidden = false;
+  });
+
+  cancel.addEventListener('click', function () {
+    confirmBox.hidden = true;
+    form.hidden = false;
+    say('');
+  });
+
+  really.addEventListener('click', function () {
+    var username = document.getElementById('username').value.trim().toLowerCase();
+    var code = normalise(document.getElementById('code').value);
+    really.disabled = true;
+    really.textContent = 'Deleting…';
+    say('');
+
+    fetch(URL_BASE + '/functions/v1/delete-account', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        apikey: PUBLISHABLE,
+        authorization: 'Bearer ' + PUBLISHABLE
+      },
+      body: JSON.stringify({ username: username, code: code })
+    }).then(function (response) {
+      if (response.ok) {
+        confirmBox.hidden = true;
+        done.hidden = false;
+        return;
+      }
+      confirmBox.hidden = true;
+      form.hidden = false;
+      really.disabled = false;
+      really.textContent = 'Yes, delete my account';
+      if (response.status === 429) {
+        return say('Too many attempts. Please wait a little and try again.');
+      }
+      /* One message, whichever half was wrong: the server does not tell us
+         which, and we would not repeat it if it did. */
+      say('That username or recovery code is not right. Check both and try again.');
+    }).catch(function () {
+      confirmBox.hidden = true;
+      form.hidden = false;
+      really.disabled = false;
+      really.textContent = 'Yes, delete my account';
+      say('Could not reach Lunomi. Check your connection and try again.');
+    });
+  });
+})();
+</script>
 
 <footer>
   <div class="wrap">
