@@ -43,7 +43,8 @@
       <h2>In short</h2>
       <ul>
         <li>Much of Lunomi works without an account.</li>
-        <li>Signing in is Google Sign-In only, and it is optional.</li>
+        <li>An account is a username and a password. No email address, no phone
+            number and no Google account are required, and an account is optional.</li>
         <li>There is no advertising, no in-app purchases and no subscriptions.</li>
         <li>
           Lunomi does collect privacy-conscious product analytics, described
@@ -52,6 +53,8 @@
           your own decks, and it is not tied to your Lunomi account.
         </li>
         <li>You can delete your account from inside the app, or by email.</li>
+        <li>If you lose both your password and your recovery code, we cannot
+            restore your account.</li>
       </ul>
     </div>
 
@@ -70,31 +73,39 @@
       created for you. Product analytics, described below, still applies.
     </p>
 
-    <h2>Google Sign-In</h2>
+    <h2>Lunomi accounts</h2>
     <p>
-      Signing in to Lunomi is done with Google Sign-In and no other method. When
-      you sign in:
+      A Lunomi account is a username and a password that you choose in the app.
+      There is no Google Sign-In, and we do not ask for an email address or a
+      phone number in order to create one.
     </p>
     <ul>
       <li>
-        Your device asks Google to confirm who you are, and Google returns a
-        signed token to the app.
+        Your password is handled by Supabase, our authentication and backend
+        provider, which stores it only in hashed form. Lunomi never sees or
+        stores your password, and nobody working on Lunomi can read it or look
+        it up.
       </li>
       <li>
-        That token is sent to Supabase, our authentication and backend provider,
-        which verifies it and creates or opens an authentication account for you.
+        For technical reasons, the authentication system Lunomi uses identifies
+        accounts by an address-shaped value. Lunomi generates one internally
+        from your username. It is not an email address, it cannot receive mail,
+        it is never shown to you or to anyone else, and it is not contact
+        information. We do not use it to contact you, because it cannot be used
+        to contact anyone.
       </li>
       <li>
-        The authentication account held by Supabase includes the account
-        identifier and the email address associated with the Google account you
-        signed in with.
+        Because there is no email address on your account, there is no
+        &ldquo;reset by email&rdquo; option. Instead, when you create an account
+        you are shown a one-time recovery code. Only a hashed form of that code
+        is stored, so we cannot retrieve or tell you your code later.
+      </li>
+      <li>
+        If you lose both your password and your recovery code, your account
+        cannot be recovered. We are not able to verify who you are by any other
+        means, and we will not do so.
       </li>
     </ul>
-    <p>
-      Your Google password is never seen by Lunomi. Your email address is used to
-      identify your account; it is not shown to other Lunomi users, and it is not
-      sent to our analytics provider.
-    </p>
 
     <h2>Account, profile and online features</h2>
     <p>
@@ -103,11 +114,13 @@
       Supabase:
     </p>
     <ul>
-      <li>your Supabase authentication account;</li>
+      <li>your Supabase authentication account, which holds your hashed
+          password and the internal identifier described above;</li>
+      <li>a hashed form of your recovery code;</li>
       <li>
         the public Lunomi username and profile you choose &mdash; this is chosen
-        by you inside the app, is separate from your Google name, and is visible
-        to other Lunomi users who can find or add you;
+        by you inside the app and is visible to other Lunomi users, who can find
+        you by it and add you as a friend;
       </li>
       <li>friendships and friend requests between Lunomi accounts;</li>
       <li>results you submit to the daily Compete challenge;</li>
@@ -160,8 +173,8 @@
     </p>
     <ul>
       <li>
-        It is <strong>not</strong> derived from your Lunomi account, your Google
-        account, your email address, or any device, hardware or advertising
+        It is <strong>not</strong> derived from your Lunomi account, your
+        username, or any device, hardware or advertising
         identifier.
       </li>
       <li>
@@ -186,7 +199,8 @@
       is designed so that the following are not included:
     </p>
     <ul>
-      <li>your email address or Google email address;</li>
+      <li>your password, your recovery code, or the internal identifier
+          described above;</li>
       <li>your Lunomi username, or your real name;</li>
       <li>your Lunomi or Supabase account identifier, or any value derived from it;</li>
       <li>the text of custom decks or cards you create;</li>
@@ -236,9 +250,8 @@
     <h2>Service providers</h2>
     <ul>
       <li>
-        <strong>Google</strong> &mdash; the Google Sign-In provider used for
-        authentication, and the operator of the Google Play distribution
-        platform.
+        <strong>Google</strong> &mdash; the operator of the Google Play
+        distribution platform. Lunomi no longer uses Google Sign-In.
       </li>
       <li>
         <strong>Supabase</strong> &mdash; our authentication and backend service
@@ -292,8 +305,12 @@
       <li>there are no in-app purchases and no subscriptions;</li>
       <li>the main learning features work without an account at all;</li>
       <li>
-        the public profile name is chosen inside the app rather than taken from
-        the Google account, so a child's real name is not put on a leaderboard;
+        creating an account needs no email address, no phone number and no
+        account with any other company;
+      </li>
+      <li>
+        the public profile name is chosen inside the app and is not taken from
+        any other account, so a child's real name is not put on a leaderboard;
       </li>
       <li>
         analytics is limited to the aggregate product measurements described
